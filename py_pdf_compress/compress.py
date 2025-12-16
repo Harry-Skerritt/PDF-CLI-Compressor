@@ -3,15 +3,13 @@ import subprocess
 import argparse
 import shutil
 
-def getGhostscriptCmd():
-    return shutil.which("gs") or shutil.which("gswin64c")
 
 def getCurrentDir():
     return os.getcwd()
 
 
 def getPDFsInDir(path):
-    return [f for f in os.listdir(path) if f.lower().endswith(".pdf") and f != "out"]
+    return [f for f in os.listdir(path) if f.lower().endswith(".pdf")]
 
 
 def createOutDir(path):
@@ -41,16 +39,6 @@ def getQuality(in_quality):
 
 
 def compress_pdfs(arg_in_qual):
-    gs_cmd = getGhostscriptCmd()
-    if not gs_cmd:
-        raise RuntimeError(
-            "Ghostscript not found.\n"
-            "Install it:\n"
-            "  macOS:   brew install ghostscript\n"
-            "  Linux:   sudo apt install ghostscript\n"
-            "  Windows: choco install ghostscript"
-        )
-        
     working_dir = getCurrentDir()
     out_dir = createOutDir(working_dir)
     clearOutDir(out_dir)
@@ -68,7 +56,7 @@ def compress_pdfs(arg_in_qual):
 
         subprocess.run(
             [
-                gs_cmd,
+                "gs",
                 "-sDEVICE=pdfwrite",
                 f"-dPDFSETTINGS={quality}",
                 "-dNOPAUSE",
@@ -78,19 +66,3 @@ def compress_pdfs(arg_in_qual):
             ],
             check=True,
         )
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Compress PDFs in current directory"
-    )
-    parser.add_argument(
-        "--quality",
-        type=int,
-        choices=[1, 2, 3, 4],
-        default=2,
-        help="Compression quality: 1=screen, 2=ebook (default), 3=printer, 4=prepress",
-    )
-
-    args = parser.parse_args()
-    compress_pdfs(args.quality)

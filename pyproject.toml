@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-pdf-compress"
+version = "1.0.0"
+description = "Compress all PDFs in the current directory using Ghostscript"
+requires-python = ">=3.10"
+
+[project.scripts]
+py-pdf-compress = "py_pdf_compress.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

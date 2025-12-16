@@ -1,4 +1,4 @@
-# PDF-CLI-Compressor
+# py-pdf-compress
 ![Made with Python](https://img.shields.io/badge/Python-a?logo=python&label=Made%20With&color=blue&style=for-the-badge)
 ![GitHub License](https://img.shields.io/github/license/Harry-Skerritt/PDF-CLI-Compressor?style=for-the-badge)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Harry-Skerritt/PDF-CLI-Compressor?style=for-the-badge)
@@ -8,23 +8,81 @@
 
 ---
 
-* This is a quick and dirty CLI PDF compressor written in python.
+Uses Ghostscript to compress all PDFs within a directory!
 
-* Not the neatest or most efficient code, but was written in 30 minutes as I needed to compress some PDFs without uploading them to the internet.
+*Originally written as a quick tool for personal use, but added to, for ease of use*
 
-* Uses Ghostscript to operate
+<br>
 
-## How to Install
-_**Requires Python3 being installed**_
+# Installing the Tool
+Below are instructions to install *py-pdf-compress* and its dependencies
 
-### To install the Ghostscript dependency:
-* On MacOS run `brew install ghostscript`
-* On Windows run `choco install ghostscript`
-* On Linux run `sudo apt install ghostscript`
+## Requirements
+* Python 3.10+
+* Ghostscript
 
-### To 'Install' the script:
-* Put the compress.py file into the directory of pdfs and run `python3 compress.py` (This will run at default compression level of 2)
 
+## To install the Ghostscript:
+**MacOS**
+
+```bash
+brew install ghostscript
+```
+
+**Linux**
+
+```bash
+sudo apt install ghostscript
+```
+
+**Windows**
+
+```bash
+choco install ghostscript
+```
+
+
+## Installing py-pdf-compress
+This tool is installed using **pipx**
+
+### Install pipx
+**MacOS / Linux**
+
+```bash
+brew install pipx
+pipx ensurepath
+```
+
+**Windows**
+
+```bash
+python -m pip install --user pipx
+python -m pipx ensurepath
+```
+
+### Installing from GitHub
+Once **pipx** is installed, running:
+
+```bash
+pipx install git+https://github.com/Harry-Skerritt/py-pdf-compress.git
+```
+**This should successfully install the tool!**
+
+---
+<br>
+
+# Using the Tool
+
+Once installed, the tool can be used as instructed below!
+
+## Running the Script
+Navigate to your directory containing the PDFs you wish to compress using the command line, and run
+
+```bash
+py-pdf-compress
+```
+
+This will run the script with the standard quality of 2!
 
 ## Quality Flag
 You can use the `--quality` flag to specify the quality of your compressed PDF.
@@ -42,4 +100,4 @@ You can use the `--quality` flag to specify the quality of your compressed PDF.
 ## Possible Additions
 * Neaten up of the code
 * More efficient code
-* Make it easier to use
+* ~~Make it easier to use~~ **Done** through use of pipx and the command line tool

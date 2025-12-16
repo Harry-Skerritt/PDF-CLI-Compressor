@@ -2,11 +2,33 @@ import os
 import subprocess
 import argparse
 import shutil
+import sys
 
 
 def getCurrentDir():
-    return os.getcwd()
-
+       cwd = os.path.abspath(os.getcwd())
+   
+       if os.name == "nt":  # Windows
+           if cwd.rstrip("\\") in ["C:", "D:", "E:"]:
+               sys.exit("Error: Cannot run py-pdf-compress in the root directory of a drive.")
+       else:  # macOS / Linux
+           if cwd == "/":
+               sys.exit("Error: Cannot run py-pdf-compress in the root directory (/).")
+   
+       return cwd
+           
+        
+def getGhostscriptCmd():
+    gs_cmd = shutil.which("gs") or shutil.which("gswin64c")
+    if not gs_cmd:
+        sys.exit(
+            "Error: Ghostscript not found.\n"
+            "Install it:\n"
+            "  macOS:   brew install ghostscript\n"
+            "  Linux:   sudo apt install ghostscript\n"
+            "  Windows: choco install ghostscript"
+        )
+    return gs_cmd
 
 def getPDFsInDir(path):
     return [f for f in os.listdir(path) if f.lower().endswith(".pdf")]
@@ -40,10 +62,16 @@ def getQuality(in_quality):
 
 def compress_pdfs(arg_in_qual):
     working_dir = getCurrentDir()
+    gs_cmd = getGhostscriptCmd()
+    
     out_dir = createOutDir(working_dir)
     clearOutDir(out_dir)
 
     pdf_names = getPDFsInDir(working_dir)
+    
+    if not pdf_names:
+        sys.exit(f"Error: No PDF files found in {working_dir}")
+    
     quality = getQuality(arg_in_qual)
 
     for pdf in pdf_names:
@@ -56,7 +84,7 @@ def compress_pdfs(arg_in_qual):
 
         subprocess.run(
             [
-                "gs",
+                gs_cmd,
                 "-sDEVICE=pdfwrite",
                 f"-dPDFSETTINGS={quality}",
                 "-dNOPAUSE",

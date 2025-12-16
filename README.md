@@ -9,14 +9,17 @@
 ![Runs on Windows](https://img.shields.io/badge/Windows-OS?logo=windows&color=blue&style=for-the-badge)
 
 ---
+**Find on [PyPi](https://pypi.org/project/py-pdf-compress/)**
 
 Uses Ghostscript to compress all PDFs within a directory!
 
-*Originally written as a quick tool for personal use, but added to, for ease of use*
+*Originally written as a quick tool for personal use, but added to, for ease of use by others*
 
-[PyPi Link](https://pypi.org/project/py-pdf-compress/)
+### Quick Links
+* [Install](#Installing-the-Tool)
+* [How To Use](#Using-the-tool)
+* [Flags](#Flags)
 
-<br>
 
 # Installing the Tool
 Below are instructions to install *py-pdf-compress* and its dependencies
@@ -47,24 +50,30 @@ choco install ghostscript
 
 
 ## Installing py-pdf-compress
-This tool can either be installed diretcly from [pypi](### Installing using pip) using *pip* or *pip3*, or it can be installed from [GitHub](### Installing from GitHub) using **pipx**
 
-### Installing using pip
----
+This tool can either be installed diretcly from [pypi](#Installing-using-pip) using *pip* or *pip3*, or it can be installed from [GitHub](#Installing-from-GitHub) using **pipx**
+
+### Installing using pip *(recommended)*
+
 To install using pip run the command
 
 ```bash
 pip install py-pdf-compress
 ```
 
-<br>
+To install using pip3 run the command
 
-### Installing from GitHub
+```bash
+pip3 install py-pdf-compress
+```
 
-This requires **pipx**
+### [How To Use The Tool](#Using-the-tool)
 
-#### Installing pipx
 ---
+
+### Installing from GitHub *(requires pipx)*
+---
+#### Installing pipx
 
 **MacOS / Linux**
 
@@ -73,6 +82,7 @@ brew install pipx
 pipx ensurepath
 ```
 
+
 **Windows**
 
 ```bash
@@ -80,15 +90,13 @@ python -m pip install --user pipx
 python -m pipx ensurepath
 ```
 
-### 
-Once **pipx** is installed, running:
+---
+#### Once **pipx** is installed, run:
 
 ```bash
 pipx install git+https://github.com/Harry-Skerritt/py-pdf-compress.git
 ```
-**This should successfully install the tool!**
 
----
 <br>
 
 # Using the Tool
@@ -104,11 +112,14 @@ py-pdf-compress
 
 This will run the script with the standard quality of 2!
 
-
 ### Output
 All the compressed files will be located at:```{CURRENT_DIRECTORY}/out```
 
-## Quality Flag
+<br>
+
+## Flags
+
+### Quality Flag
 You can use the `--quality` flag to specify the quality of your compressed PDF.
 
 | Quality Tag    | Quality / Size | Ghostscript Preset |
@@ -118,14 +129,28 @@ You can use the `--quality` flag to specify the quality of your compressed PDF.
 | `--quality 3`  | high / big        | /printer        |
 | `--quality 4`  | best / largest    | /prepress       |
 
-### Example Useage 
+#### Example Useage 
 
 ```bash
 py-pdf-compress --quality 2
 ```
 
+<br>
+
+### Quiet Flag
+You can use the `-q` or `--quiet` to only output the done message, and supress output
+
+#### Example Useage
+
+```bash
+py-pdf-compress --quality 2 -q
+```
+
+<br>
+<br>
 
 ## Possible Additions
+* Recursive compression within directories
 * Neaten up of the code
 * More efficient code
 * ~~Make it easier to use~~ **Done** through use of pipx and the command line tool

@@ -84,9 +84,12 @@ py-pdf-compress
 
 This will run the script with the standard quality of 2!
 
+
+### Output
+All the compressed files will be located at:```{CURRENT_DIRECTORY}/out```
+
 ## Quality Flag
 You can use the `--quality` flag to specify the quality of your compressed PDF.
-> Example Useage `python3 compress.py --quality 2`
 
 | Quality Tag    | Quality / Size | Ghostscript Preset |
 | -------------- | ----------------- | --------------- |
@@ -95,6 +98,11 @@ You can use the `--quality` flag to specify the quality of your compressed PDF.
 | `--quality 3`  | high / big        | /printer        |
 | `--quality 4`  | best / largest    | /prepress       |
 
+### Example Useage 
+
+```bash
+py-pdf-compress --quality 2
+```
 
 
 ## Possible Additions

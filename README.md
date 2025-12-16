@@ -12,18 +12,22 @@
 * Uses Ghostscript to operate
 
 ## How to Install
-**Requires Python3 being installed**
+_**Requires Python3 being installed**_
 
-* On MacOS run `brew install ghostscript` to install the ghostscript dependency
+### To install the Ghostscript dependency:
+* On MacOS run `brew install ghostscript`
+* On Windows run `choco install ghostscript`
+* On Linux run `sudo apt install ghostscript`
 
-* Then put the compress.py file into the directory of pdfs and run `python3 compress.py` (This will run at default compression level of 2)
+### To 'Install' the script:
+* Put the compress.py file into the directory of pdfs and run `python3 compress.py` (This will run at default compression level of 2)
 
 
 ## Quality Flag
 You can use the `--quality` flag to specify the quality of your compressed PDF.
 > Example Useage `python3 compress.py --quality 2`
 
-| Quality Tag    | Quality / Size | GhostScript Preset |
+| Quality Tag    | Quality / Size | Ghostscript Preset |
 | -------------- | ----------------- | --------------- |
 | `--quality 1`  | lowest / smallest | /screen         |
 | `--quality 2`  | good / small      | /ebook          |
